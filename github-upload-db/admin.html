@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Rose noir | 회원 관리</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page is-checking">
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Rose <em>noir</em></a>
+      <nav class="nav" aria-label="관리 메뉴">
+        <a href="#summary">요약</a>
+        <a href="#members">회원 관리</a>
+        <a href="#orders">주문 관리</a>
+      </nav>
+      <div class="header-tools">
+        <span class="admin-who" id="adminWho"></span>
+        <a href="index.html" class="icon-btn">쇼핑몰</a>
+        <button type="button" class="icon-btn" id="adminLogout">로그아웃</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <p class="admin-checking" id="checking">관리자인지 확인하는 중이에요…</p>
+
+    <!-- 요약 숫자 -->
+    <section id="summary" class="admin-section" aria-labelledby="sumTitle">
+      <p class="kicker">DASHBOARD</p>
+      <h1 class="title" id="sumTitle">회원 관리</h1>
+      <div class="admin-cards" id="summaryCards"></div>
+    </section>
+
+    <!-- 회원 목록 · 검색 · 필터 · 수정 -->
+    <section id="members" class="admin-section" aria-labelledby="memTitle">
+      <h2 class="admin-h2" id="memTitle">회원 목록</h2>
+      <div class="toolbar">
+        <label class="search admin-search">
+          <span class="sr-only">이름 검색</span>
+          <input type="search" id="memberSearch" placeholder="이름 검색">
+        </label>
+        <select id="gradeFilter" class="select" aria-label="등급 필터">
+          <option value="">전체 등급</option>
+        </select>
+        <span class="result" id="memberCount"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="table admin-table">
+          <thead>
+            <tr><th>이름</th><th>이메일</th><th>연락처</th><th>등급</th><th>포인트</th><th>역할</th><th>누적 결제</th><th>가입일</th><th></th></tr>
+          </thead>
+          <tbody id="memberRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 주문 목록 · 상태 바꾸기 -->
+    <section id="orders" class="admin-section" aria-labelledby="ordTitle">
+      <h2 class="admin-h2" id="ordTitle">주문 목록</h2>
+      <div class="table-wrap">
+        <table class="table admin-table">
+          <thead>
+            <tr><th>주문</th><th>주문일</th><th>회원</th><th>상품</th><th>결제 금액</th><th>상태</th><th></th></tr>
+          </thead>
+          <tbody id="orderRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Supabase 연결 도구 (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
